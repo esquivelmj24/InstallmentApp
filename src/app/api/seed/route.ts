@@ -15,6 +15,9 @@ export async function GET() {
       { name: 'ErgoChair Elite', description: 'Premium ergonomic office chair.', price: 450, sellerId: 's3', category: 'Furniture', imageUrl: '🪑' },
       { name: 'Mechanical Keyboard', description: 'Tactile switches for gaming.', price: 120, sellerId: 's2', category: 'Electronics', imageUrl: '⌨️' },
       { name: '4K Ultra Monitor', description: 'Vivid colors, 144Hz refresh rate.', price: 380, sellerId: 's1', category: 'Electronics', imageUrl: '🖥️' },
+      { name: 'Gaming Mouse RGB', description: 'Ultra-fast response time for pro gamers.', price: 80, sellerId: 's2', category: 'Electronics', imageUrl: '🖱️' },
+      { name: 'Leather Office Bag', description: 'Genuine leather, perfect for professionals.', price: 150, sellerId: 's3', category: 'Accessories', imageUrl: '💼' },
+      { name: 'Wireless Charging Pad', description: 'Fast charging for all Qi-enabled devices.', price: 40, sellerId: 's1', category: 'Electronics', imageUrl: '🔌' },
     ];
 
     await Product.deleteMany({}); // Clear existing to avoid duplicates
