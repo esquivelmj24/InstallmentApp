@@ -28,3 +28,24 @@ export interface SellerRequest {
   requestDate: string;
   status: 'PENDING' | 'APPROVED' | 'REJECTED';
 }
+
+export interface Order {
+  id: string;
+  userId: string;
+  productId: string;
+  productName: string;
+  totalAmount: number;
+  amountPaid: number;
+  balance: number;
+  status: 'PENDING' | 'PARTIAL' | 'PAID' | 'SHIPPED' | 'EXPIRED';
+  deadline: Date | string;
+  createdAt: Date | string;
+}
+
+export interface Payment {
+  id: string;
+  orderId: string;
+  amount: number;
+  paymentDate: Date | string;
+  method: 'GCASH' | 'CREDIT_CARD' | 'CASH';
+}
