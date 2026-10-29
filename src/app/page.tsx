@@ -14,6 +14,15 @@ export default function LandingPage() {
           </p>
         </div>
 
+        <div className="flex justify-center gap-4 mb-12">
+          <Link href="/login" className="px-6 py-2 bg-white text-slate-600 font-semibold rounded-full border border-slate-200 hover:bg-slate-50 transition-colors">
+            Log In
+          </Link>
+          <Link href="/register" className="px-6 py-2 bg-indigo-600 text-white font-semibold rounded-full hover:bg-indigo-700 transition-colors shadow-md shadow-indigo-200">
+            Join Now
+          </Link>
+        </div>
+
         <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
           {/* Customer Portal Card */}
           <div className="group p-8 bg-white rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-indigo-300 transition-all duration-300 text-left space-y-6">
