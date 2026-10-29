@@ -73,7 +73,7 @@ export default function Shop() {
                   <span className="text-[10px] font-bold text-indigo-600 uppercase tracking-wider px-2 py-0.5 bg-indigo-50 rounded-full">
                     {product.category}
                   </span>
-                  <span className="text-lg font-bold text-slate-900">${product.price}</span>
+                  <span className="text-lg font-bold text-slate-900">₱{product.price}</span>
                 </div>
                 <h3 className="text-lg font-bold text-slate-900">{product.name}</h3>
                 <p className="text-sm text-slate-500 line-clamp-2">{product.description}</p>

@@ -118,15 +118,15 @@ export default function CustomerDashboard() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100">
                   <p className="text-xs font-medium text-slate-500 uppercase">Total Price</p>
-                  <p className="text-lg font-bold text-slate-900">${order.totalAmount}</p>
+                  <p className="text-lg font-bold text-slate-900">₱{order.totalAmount}</p>
                 </div>
                 <div className="p-4 bg-emerald-50 rounded-2xl border border-emerald-100">
                   <p className="text-xs font-medium text-emerald-600 uppercase">Amount Paid</p>
-                  <p className="text-lg font-bold text-emerald-700">${order.amountPaid}</p>
+                  <p className="text-lg font-bold text-emerald-700">₱{order.amountPaid}</p>
                 </div>
                 <div className="p-4 bg-rose-50 rounded-2xl border border-rose-100">
                   <p className="text-xs font-medium text-rose-600 uppercase">Balance Due</p>
-                  <p className="text-lg font-bold text-rose-700">${order.balance}</p>
+                  <p className="text-lg font-bold text-rose-700">₱{order.balance}</p>
                 </div>
               </div>
 
@@ -174,7 +174,7 @@ export default function CustomerDashboard() {
               <div className="space-y-2">
                 <label className="text-xs font-bold text-slate-500 uppercase ml-1">Payment Amount</label>
                 <div className="relative">
-                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
+                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">₱</span>
                   <input 
                     type="number" 
                     required 
@@ -185,7 +185,7 @@ export default function CustomerDashboard() {
                     onChange={(e) => setPaymentAmount(e.target.value)}
                   />
                 </div>
-                <p className="text-[10px] text-slate-400 text-right">Max balance: ${selectedOrder.balance}</p>
+                <p className="text-[10px] text-slate-400 text-right">Max balance: ₱{selectedOrder.balance}</p>
               </div>
 
               <div className="grid grid-cols-2 gap-3">

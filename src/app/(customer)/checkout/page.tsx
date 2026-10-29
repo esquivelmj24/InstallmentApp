@@ -68,7 +68,7 @@ export default function CheckoutPage() {
               </div>
               <div className="flex justify-between">
                 <span className="text-slate-500">Total Price:</span>
-                <span className="font-bold text-slate-900">$1,200.00</span>
+                <span className="font-bold text-slate-900">₱1,200.00</span>
               </div>
               <div className="flex justify-between text-indigo-600 font-bold">
                 <span>Installment Period:</span>
@@ -83,7 +83,7 @@ export default function CheckoutPage() {
               <div className="space-y-2">
                 <label className="text-sm font-semibold text-slate-700">Downpayment / Partial Amount</label>
                 <div className="relative">
-                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
+                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">₱</span>
                   <input 
                     type="number" 
                     required 
@@ -113,15 +113,15 @@ export default function CheckoutPage() {
           <div className="space-y-3">
             <div className="flex justify-between text-sm">
               <span className="text-slate-500">Item Total</span>
-              <span className="font-semibold text-slate-900">$1,200.00</span>
+              <span className="font-semibold text-slate-900">₱1,200.00</span>
             </div>
             <div className="flex justify-between text-sm">
               <span className="text-slate-500">Initial Payment</span>
-              <span className="font-semibold text-indigo-600">${paymentAmount || '0.00'}</span>
+              <span className="font-semibold text-indigo-600">₱{paymentAmount || '0.00'}</span>
             </div>
             <div className="pt-3 border-t border-slate-100 flex justify-between font-bold text-lg">
               <span className="text-slate-900">Remaining Balance</span>
-              <span className="text-rose-600">${Math.max(0, 1200 - Number(paymentAmount)).toFixed(2)}</span>
+              <span className="text-rose-600">₱{Math.max(0, 1200 - Number(paymentAmount)).toFixed(2)}</span>
             </div>
           </div>
         </div>
