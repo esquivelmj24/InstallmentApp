@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Product } from '@/types';
 
 const MOCK_PRODUCTS: Product[] = [
@@ -11,6 +13,15 @@ const MOCK_PRODUCTS: Product[] = [
 ];
 
 export default function Shop() {
+  const router = useRouter();
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleAddToCart = (product: Product) => {
+    setSelectedProduct(product);
+    setIsModalOpen(true);
+  };
+
   return (
     <div className="space-y-8">
       <div className="flex items-center justify-between">
@@ -45,13 +56,50 @@ export default function Shop() {
               </div>
               <h3 className="text-lg font-bold text-slate-900">{product.name}</h3>
               <p className="text-sm text-slate-500 line-clamp-2">{product.description}</p>
-              <button className="w-full mt-4 py-2 px-4 bg-slate-900 text-white text-sm font-semibold rounded-xl hover:bg-slate-800 transition-colors">
+              <button 
+                onClick={() => handleAddToCart(product)}
+                className="w-full mt-4 py-2 px-4 bg-slate-900 text-white text-sm font-semibold rounded-xl hover:bg-slate-800 transition-colors"
+              >
                 Add to Cart
               </button>
             </div>
           </div>
         ))}
       </div>
+
+      {/* Add to Cart Modal */}
+      {isModalOpen && selectedProduct && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="bg-white rounded-3xl max-w-sm w-full shadow-2xl border border-slate-200 overflow-hidden animate-in zoom-in-95 duration-200">
+            <div className="p-6 text-center space-y-4">
+              <div className="w-20 h-20 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center text-4xl mx-auto mb-2">
+                🛒
+              </div>
+              <div className="space-y-1">
+                <h3 className="text-xl font-bold text-slate-900">Item Added!</h3>
+                <p className="text-sm text-slate-500">
+                  <span className="font-semibold text-slate-900">{selectedProduct.name}</span> has been added to your cart.
+                </p>
+              </div>
+            </div>
+            
+            <div className="p-6 bg-slate-50 border-t border-slate-100 grid grid-cols-1 gap-3">
+              <button 
+                onClick={() => router.push('/checkout')}
+                className="w-full py-3 px-4 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200"
+              >
+                Proceed to Checkout
+              </button>
+              <button 
+                onClick={() => setIsModalOpen(false)}
+                className="w-full py-3 px-4 bg-white text-slate-600 font-semibold rounded-xl border border-slate-200 hover:bg-slate-50 transition-all"
+              >
+                Back to previous screen
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
