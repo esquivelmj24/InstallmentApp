@@ -4,6 +4,7 @@ export interface User {
   id: string;
   email: string;
   name: string;
+  password?: string;
   role: UserRole;
   status: 'ACTIVE' | 'INACTIVE' | 'PENDING';
   address?: string;

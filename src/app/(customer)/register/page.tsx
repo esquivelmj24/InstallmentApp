@@ -26,12 +26,31 @@ export default function RegisterPage() {
     }
 
     setLoading(true);
-    // Mock API Call
-    setTimeout(() => {
-      console.log('User Registered with Profile:', formData);
-      setLoading(false);
+    try {
+      const response = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+          address: formData.address,
+          contactNumber: formData.contactNumber,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Registration failed');
+      }
+
       router.push('/login');
-    }, 1500);
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -43,7 +62,6 @@ export default function RegisterPage() {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-5">
-          {/* Basic Info Section */}
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <div className="space-y-2">
               <label className="text-sm font-semibold text-slate-700 ml-1">Full Name</label>
@@ -69,7 +87,6 @@ export default function RegisterPage() {
             </div>
           </div>
 
-          {/* Contact Info Section */}
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <div className="space-y-2">
               <label className="text-sm font-semibold text-slate-700 ml-1">Contact Number</label>
@@ -95,7 +112,6 @@ export default function RegisterPage() {
             </div>
           </div>
 
-          {/* Security Section */}
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <div className="space-y-2">
               <label className="text-sm font-semibold text-slate-700 ml-1">Password</label>

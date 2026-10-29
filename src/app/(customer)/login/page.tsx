@@ -17,12 +17,25 @@ export default function LoginPage() {
     setError('');
     
     setLoading(true);
-    // Mock API Call
-    setTimeout(() => {
-      console.log('User Logged In:', formData.email);
-      setLoading(false);
+    try {
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Login failed');
+      }
+
       router.push('/dashboard');
-    }, 1500);
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
