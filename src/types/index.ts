@@ -6,6 +6,8 @@ export interface User {
   name: string;
   role: UserRole;
   status: 'ACTIVE' | 'INACTIVE' | 'PENDING';
+  address?: string;
+  contactNumber?: string;
 }
 
 export interface Product {

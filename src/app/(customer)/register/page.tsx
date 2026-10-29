@@ -10,6 +10,8 @@ export default function RegisterPage() {
     email: '',
     password: '',
     confirmPassword: '',
+    address: '',
+    contactNumber: '',
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -26,7 +28,7 @@ export default function RegisterPage() {
     setLoading(true);
     // Mock API Call
     setTimeout(() => {
-      console.log('User Registered:', formData);
+      console.log('User Registered with Profile:', formData);
       setLoading(false);
       router.push('/login');
     }, 1500);
@@ -34,37 +36,66 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6">
-      <div className="max-w-md w-full bg-white rounded-3xl shadow-xl border border-slate-200 p-8 space-y-8">
+      <div className="max-w-lg w-full bg-white rounded-3xl shadow-xl border border-slate-200 p-8 space-y-8">
         <div className="text-center space-y-2">
           <h1 className="text-3xl font-bold text-slate-900">Create Account</h1>
           <p className="text-slate-500">Join InstallmentHub and start trading today.</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-5">
-          <div className="space-y-2">
-            <label className="text-sm font-semibold text-slate-700 ml-1">Full Name</label>
-            <input 
-              type="text" 
-              required 
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
-              placeholder="John Doe"
-              value={formData.name}
-              onChange={(e) => setFormData({...formData, name: e.target.value})}
-            />
+          {/* Basic Info Section */}
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+            <div className="space-y-2">
+              <label className="text-sm font-semibold text-slate-700 ml-1">Full Name</label>
+              <input 
+                type="text" 
+                required 
+                className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
+                placeholder="John Doe"
+                value={formData.name}
+                onChange={(e) => setFormData({...formData, name: e.target.value})}
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-semibold text-slate-700 ml-1">Email Address</label>
+              <input 
+                type="email" 
+                required 
+                className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
+                placeholder="john@example.com"
+                value={formData.email}
+                onChange={(e) => setFormData({...formData, email: e.target.value})}
+              />
+            </div>
           </div>
 
-          <div className="space-y-2">
-            <label className="text-sm font-semibold text-slate-700 ml-1">Email Address</label>
-            <input 
-              type="email" 
-              required 
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
-              placeholder="john@example.com"
-              value={formData.email}
-              onChange={(e) => setFormData({...formData, email: e.target.value})}
-            />
+          {/* Contact Info Section */}
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+            <div className="space-y-2">
+              <label className="text-sm font-semibold text-slate-700 ml-1">Contact Number</label>
+              <input 
+                type="tel" 
+                required 
+                className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
+                placeholder="+1 (555) 000-0000"
+                value={formData.contactNumber}
+                onChange={(e) => setFormData({...formData, contactNumber: e.target.value})}
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-semibold text-slate-700 ml-1">Address</label>
+              <input 
+                type="text" 
+                required 
+                className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
+                placeholder="123 Main St, City, Country"
+                value={formData.address}
+                onChange={(e) => setFormData({...formData, address: e.target.value})}
+              />
+            </div>
           </div>
 
+          {/* Security Section */}
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <div className="space-y-2">
               <label className="text-sm font-semibold text-slate-700 ml-1">Password</label>
