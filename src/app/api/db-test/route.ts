@@ -13,7 +13,7 @@ export async function GET() {
     return NextResponse.json({ 
       status: 'Connected', 
       database: dbName, 
-      collections: collections.map(c => c.name),
+      collections: collections.map((c: any) => c.name),
       message: 'Connection successful! Your Vercel server can reach the database.'
     }, { status: 200 });
 
