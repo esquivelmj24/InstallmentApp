@@ -55,7 +55,7 @@ export default function LandingPage() {
         </div>
 
         <footer className="text-slate-400 text-sm">
-          © 2026 InstallmentHub Inc. All rights reserved.
+          © 2026 InstallmentHub Inc. All rights reserved. | v1.0.1
         </footer>
       </div>
     </div>
