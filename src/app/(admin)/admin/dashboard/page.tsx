@@ -1,6 +1,26 @@
-import React from 'react';
+'use client';
+import React, { useState, useEffect } from 'react';
 
 export default function AdminDashboard() {
+  const [stats, setStats] = useState({ users: 0, sellers: 0, revenue: 0, pendingOrders: 0 });
+  const [readyForShipping, setReadyForShipping] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        setStats({ users: 12402, sellers: 842, revenue: 42100, pendingOrders: 12 });
+        setReadyForShipping([
+          { id: 'ord1', customer: 'John Doe', product: 'UltraBook Pro 14', total: 1200 },
+          { id: 'ord2', customer: 'Jane Smith', product: 'ErgoChair Elite', total: 450 },
+        ]);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchData();
+  }, []);
+
   return (
     <div className="space-y-8">
       <div className="flex items-center justify-between">
@@ -30,6 +50,47 @@ export default function AdminDashboard() {
           <p className="text-sm font-medium text-slate-500">Pending Requests</p>
           <p className="text-3xl font-bold text-slate-900">12</p>
           <p className="text-xs text-amber-600 font-bold">Action required</p>
+        </div>
+      </div>
+
+      <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm space-y-6">
+        <div className="flex items-center justify-between">
+          <div className="space-y-1">
+            <h2 className="text-xl font-bold text-slate-900">📦 Ready for Shipment</h2>
+            <p className="text-sm text-slate-500">Orders that are fully paid and ready to be sent to customers.</p>
+          </div>
+          <span className="px-3 py-1 bg-emerald-100 text-emerald-600 text-xs font-bold rounded-full">
+            {readyForShipping.length} Orders
+          </span>
+        </div>
+
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse">
+            <thead className="border-b border-slate-100">
+              <tr className="border-b border-slate-100">
+                <th className="py-3 text-xs font-bold text-slate-400 uppercase tracking-wider">Order ID</th>
+                <th className="py-3 text-xs font-bold text-slate-400 uppercase tracking-wider">Customer</th>
+                <th className="py-3 text-xs font-bold text-slate-400 uppercase tracking-wider">Product</th>
+                <th className="py-3 text-xs font-bold text-slate-400 uppercase tracking-wider">Total</th>
+                <th className="py-3 text-xs font-bold text-slate-400 uppercase tracking-wider text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-50">
+              {readyForShipping.map((order) => (
+                <tr key={order.id} className="hover:bg-slate-50 transition-colors">
+                  <td className="py-4 text-sm font-mono text-slate-500">{order.id}</td>
+                  <td className="py-4 text-sm font-semibold text-slate-900">{order.customer}</td>
+                  <td className="py-4 text-sm text-slate-600">{order.product}</td>
+                  <td className="py-4 text-sm font-bold text-slate-900">${order.total}</td>
+                  <td className="py-4 text-right">
+                    <button className="px-4 py-2 bg-indigo-600 text-white text-xs font-bold rounded-lg hover:bg-indigo-700 transition-colors">
+                      Mark as Shipped
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
 
