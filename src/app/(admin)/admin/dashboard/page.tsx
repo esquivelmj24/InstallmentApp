@@ -76,7 +76,7 @@ export default function AdminDashboard() {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-50">
-              {readyForShipping.map((order) => (
+              {readyForShipping.map((order: any) => (
                 <tr key={order.id} className="hover:bg-slate-50 transition-colors">
                   <td className="py-4 text-sm font-mono text-slate-500">{order.id}</td>
                   <td className="py-4 text-sm font-semibold text-slate-900">{order.customer}</td>
